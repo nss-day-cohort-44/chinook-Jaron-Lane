@@ -47,3 +47,15 @@ JOIN Customer
 JOIN Invoice
     ON Customer.CustomerId = Invoice.CustomerId
 WHERE Title LIKE "%Agent%";
+
+
+-- 7 invoice_totals.sql: Provide a query that shows the Invoice Total,
+-- Customer name, Country and Sale Agent name for all invoices and customers.
+
+SELECT Total, c.FirstName || ' ' || c.LastName AS CFullName, c.Country, e.FirstName || ' ' || e.LastName AS EFullName
+FROM Employee e
+JOIN Customer c
+    ON e.EmployeeId = c.SupportRepId 
+JOIN Invoice i
+    ON c.CustomerId = i.CustomerId
+WHERE Title LIKE "%Agent%";
