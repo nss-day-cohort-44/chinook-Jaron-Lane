@@ -59,3 +59,23 @@ JOIN Customer c
 JOIN Invoice i
     ON c.CustomerId = i.CustomerId
 WHERE Title LIKE "%Agent%";
+
+
+-- 8 total_invoices_{year}.sql: How many Invoices were there in 2009 and 2011?
+
+SELECT COUNT(*)
+FROM Invoice
+WHERE InvoiceDate like "%2011%" OR InvoiceDate like "%2009%";
+
+
+-- 11 line_items_per_invoice.sql: Looking at the InvoiceLine table, provide a query
+-- that COUNTs the number of line items for each Invoice.
+
+SELECT COUNT(InvoiceLineId), InvoiceId
+FROM InvoiceLine 
+GROUP BY InvoiceId;
+
+SELECT * 
+FROM InvoiceLine
+WHERE InvoiceId = 10;
+
