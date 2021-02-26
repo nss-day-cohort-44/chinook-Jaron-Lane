@@ -28,4 +28,22 @@ WHERE Country = "Brazil";
 
 SELECT *
 FROM Employee
-WHERE Title LIKE "%Agent%"
+WHERE Title LIKE "%Agent%";
+
+
+-- unique_invoice_countries.sql: Provide a query showing a unique/distinct list of billing countries from the Invoice table.
+
+SELECT DISTINCT BillingCountry
+FROM Invoice;
+
+
+-- sales_agent_invoices.sql: Provide a query that shows the invoices 
+-- associated with each sales agent. The resultant table should include the Sales Agent's full name.
+
+SELECT Employee.FirstName || ' ' || Employee.LastName AS FullName, InvoiceId
+FROM Employee
+JOIN Customer
+    ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice
+    ON Customer.CustomerId = Invoice.CustomerId
+WHERE Title LIKE "%Agent%";
