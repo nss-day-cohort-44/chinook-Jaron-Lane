@@ -68,6 +68,17 @@ FROM Invoice
 WHERE InvoiceDate like "%2011%" OR InvoiceDate like "%2009%";
 
 
+-- 9 total_sales_{year}.sql: What are the respective total sales for each of those years?
+
+SELECT 
+    COUNT(Invoice.InvoiceId) NumberOfInvoices,
+    STRFTIME('%Y', Invoice.InvoiceDate) InvoiceYear
+FROM Invoice
+WHERE 
+    InvoiceYear = '2011' OR InvoiceYear = '2009'
+GROUP BY InvoiceYear;
+
+
 -- 11 line_items_per_invoice.sql: Looking at the InvoiceLine table, provide a query
 -- that COUNTs the number of line items for each Invoice.
 
