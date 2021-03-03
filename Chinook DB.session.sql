@@ -88,3 +88,9 @@ SELECT *
 FROM InvoiceLine
 WHERE InvoiceId = 10;
 
+-- 12 line_item_track.sql: Provide a query that includes 
+-- the purchased track name with each invoice line item.
+SELECT i.Name, i.InvoiceLineId, i.InvoiceId
+FROM InvoiceLine i
+    JOIN Track AS t ON i.TrackId = t.TrackId
+;
