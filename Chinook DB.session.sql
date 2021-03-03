@@ -130,3 +130,18 @@ JOIN
     PlaylistTrack AS pt ON pt.PlaylistId = Playlist.PlaylistId
 GROUP BY Playlist.PlaylistId
 ;
+
+
+-- 16 tracks_no_id.sql: Provide a query that shows all the Tracks, 
+-- but displays no IDs. The result should include the Album name, Media type and Genre.
+SELECT 
+    t.Name AS TrackName,
+    al.Title AS AlbumName,
+    mt.Name AS MediaTypeName,
+    g.Name AS GenreName
+FROM Track t
+JOIN
+    Album AS al ON t.AlbumId = al.AlbumId,
+    MediaType AS mt ON mt.MediaTypeId = t.MediaTypeId,
+    Genre AS g ON g.GenreId = t.GenreId
+;
