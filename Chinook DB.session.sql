@@ -90,7 +90,22 @@ WHERE InvoiceId = 10;
 
 -- 12 line_item_track.sql: Provide a query that includes 
 -- the purchased track name with each invoice line item.
-SELECT i.Name, i.InvoiceLineId, i.InvoiceId
+SELECT t.Name, i.InvoiceLineId, i.InvoiceId
 FROM InvoiceLine i
-    JOIN Track AS t ON i.TrackId = t.TrackId
+    JOIN Track AS t ON t.TrackId = i.TrackId
+;
+
+
+-- 13 line_item_track_artist.sql: Provide a query that includes the 
+-- purchased track name AND artist name with each invoice line item.
+SELECT 
+    t.Name,
+    i.InvoiceLineId,
+    i.InvoiceId,
+    a.Name
+FROM InvoiceLine i
+    JOIN 
+        Track AS t ON t.TrackId = i.TrackId,
+        Album ON t.AlbumId = Album.AlbumId,
+        Artist AS a ON Album.ArtistId = a.ArtistId
 ;
